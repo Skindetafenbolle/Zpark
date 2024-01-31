@@ -4,15 +4,20 @@
     async function submitForm(event) {
       event.preventDefault();
   
-      // Получение значения email из формы
       const emailInput = document.querySelector('.subscribe__form-email');
       const email = emailInput.value;
   
-      // Создание объекта formData
+      const agreementCheckbox = document.querySelector('.subscribe__agreement-checkbox');
+  
+      if (!agreementCheckbox.checked) {
+        alert('Для подписки необходимо согласиться на обработку персональных данных');
+        return;
+      }
+  
       const formData = { email: email };
   
       try {
-        const feedbackResponse = await fetch('https://zparkbackend.onrender.com/sendEmailSub', {
+        const emailResponse = await fetch('https://zparkbackend.onrender.com/sendEmailSub', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -20,10 +25,11 @@
           body: JSON.stringify(formData),
         });
   
-        if (feedbackResponse.ok) {
-          console.log('Form submitted successfully to /sendFeedback');
+        if (emailResponse.ok) {
+          console.log('Form submitted successfully to /sendEmailSub');
         } else {
-          console.error('Form submission failed for /sendFeedback');
+            console.error('Form submission failed for /sendEmailSub');
+            alert('Этот email уже подписан');
         }
       } catch (error) {
         console.error(error);
@@ -34,8 +40,7 @@
       const form = document.querySelector('.subscribe__form');
       form.addEventListener('submit', submitForm);
     });
-  </script>
-
+</script>
 <div class='subscribe'>
     <div class='subscribe__img'>
         <img src='/img/spider-man.png' class="subscribe__img-inner" alt='Картинка человека-паука'>
@@ -57,7 +62,7 @@
             </form>
         </div>
         <label class='subscribe__agreement'>
-            <input class="subscribe__agreement-checkbox" type='checkbox' name='' id=''>
+            <input class="subscribe__agreement-checkbox" type='checkbox' required>
             Выражаю свое согласие на обработку моих персональных данных
         </label>
     </div>
