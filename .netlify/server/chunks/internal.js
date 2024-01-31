@@ -136,7 +136,7 @@ const options = {
     app: ({ head, body, assets: assets2, nonce, env }) => '<!doctype html>\r\n<html lang="ru">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<link rel="icon" href="' + assets2 + '/img/favicon.jpg" />\r\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\r\n		<link rel="stylesheet" href="' + assets2 + '/reset.css" />\r\n		<link\r\n			href="https://fonts.googleapis.com/css?family=Rubik:300,regular,500,600,700,800,900,300italic,italic,500italic,600italic,700italic,800italic,900italic"\r\n			rel="stylesheet"\r\n		/>\r\n		<link\r\n			href="https://fonts.googleapis.com/css?family=Geologica:100,200,300,regular,500,600,700,800,900"\r\n			rel="stylesheet"\r\n		/>\r\n		<link href="https://fonts.googleapis.com/css?family=Lobster:regular" rel="stylesheet" />\r\n		' + head + '\r\n	</head>\r\n	<body data-sveltekit-preload-data="hover" style="font-family: Rubik; width: 100%" id="body">\r\n		<div style="display: contents">' + body + "</div>\r\n	</body>\r\n</html>\r\n",
     error: ({ status, message }) => '<!doctype html>\r\n<html lang="en">\r\n	<head>\r\n		<meta charset="utf-8" />\r\n		<title>' + message + "</title>\r\n	</head>\r\n	<body>\r\n		<h1>My custom error page</h1>\r\n		<p>Status: " + status + "</p>\r\n		<p>Message: " + message + "</p>\r\n	</body>\r\n</html>\r\n"
   },
-  version_hash: "1ry10yl"
+  version_hash: "swx6u7"
 };
 function get_hooks() {
   return {};
