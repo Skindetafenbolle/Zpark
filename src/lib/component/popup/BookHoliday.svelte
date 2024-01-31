@@ -38,7 +38,8 @@
 
     async function submitForm(event) {
         event.preventDefault();
-
+        // https://zparkbackend.onrender.com
+        // http://localhost:3000
         try {
             const feedbackResponse = await fetch('https://zparkbackend.onrender.com/sendFeedback', {
                 method: 'POST',
