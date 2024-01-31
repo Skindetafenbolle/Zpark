@@ -72,6 +72,34 @@
             console.error(error);
         }
     }
+    function tomorrowDate() {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        const year = tomorrow.getFullYear();
+        let month = tomorrow.getMonth() + 1;
+        let day = tomorrow.getDate();
+
+        if (month < 10) {
+            month = `0${month}`;
+        }
+        if (day < 10) {
+            day = `0${day}`;
+        }
+
+        return `${year}-${month}-${day}`;
+    }
+    function formatPhoneNumber(event) {
+        let inputValue = event.target.value;
+
+        inputValue = inputValue.replace(/\D/g, '');
+
+        if (inputValue.length > 12) {
+            inputValue = inputValue.slice(0, 12);
+        }
+
+        event.target.value = inputValue;
+    }
 </script>
 
 <dialog class="popup" id="popupBooking">
@@ -89,8 +117,9 @@
             <label class='form__label'>Ваше имя *
                 <input bind:value={formData.name} class="form__input" type="text" placeholder="Андрей" required>
             </label>
-            <label class='form__label'>Дата проведения *
-                <input bind:value={formData.date} class="form__input" type="date" data-mask-date required>
+            <label class='form__label'>
+                Дата проведения *
+                <input bind:value={formData.date} class="form__input" type="date" required min={tomorrowDate()}>
             </label>
             <label class='form__label'>Имя именинника
                 <input bind:value={formData.name_kid} class="form__input" type="text" placeholder="Полина">
@@ -101,8 +130,9 @@
             <label class='form__label'>Количество детей *
                 <input bind:value={formData.count_kid} class="form__input" type="number" min="1" max="100" data-mask-num  placeholder="1" required>
             </label>
-            <label class='form__label'>Телефон *
-                <input bind:value={formData.number} class="form__input" type='tel' data-mask-tel required>
+            <label class='form__label'>
+                Телефон *
+                <input bind:value={formData.number} class="form__input" type='tel' placeholder="375(XX)XXX-XX-XX" required on:input={formatPhoneNumber}>
             </label>
             <label class='form__label-confirm'>
                 <input type='checkbox' class='form__input-confirm' required>
